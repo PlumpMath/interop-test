@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mobile Interop Test</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+	<h1>Interop Test</h1>
+
+	<button id="testBtn" class="btn btn-success btn-block">Call native method</button>
+
+	<button class="btn btn-primary btn-block" onclick="doTest()">Show Toast</button>
+
+</div>
+
+
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		//alert('hello');
+		$('#testBtn').click(function () {
+			if (window.interop) {
+				var result = interop.helloWorld();
+				alert(result);
+			}
+			else {
+				alert('Interop is not defined!');
+			}
+		});
+	});
+
+	function doTest() {
+		interop.showToast('message from javascript!');
+	}
+</script>
+
+</body>
+</html>
